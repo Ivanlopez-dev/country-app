@@ -21,7 +21,12 @@
         </td>
         <td>{{ country.name }}</td>
         <td>{{ country.capital }}</td>
-        <td>{{ country.population }}</td>
+        <td>
+          <span class="badge badge-secondary">
+            <!-- DecimalPipe https://angular.dev/api/common/DecimalPipe -->
+            {{ country.population | number }}
+          </span>
+        </td>
         <td>
           <a class="link-primary cursor-pointer" href="">Más información</a>
         </td>
