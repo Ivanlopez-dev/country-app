@@ -7,4 +7,8 @@ import { CountryListComponent } from "../../components/country-list/country-list
   imports: [SearchInputComponent, CountryListComponent],
   templateUrl: './by-country-page.component.html',
 })
-export class ByCountryPageComponent { }
+export class ByCountryPageComponent {
+  countries(): import("../../interfaces/rest-countries.interface").RESTCountry[] {
+    throw new Error('Method not implemented.');
+  }
+}
