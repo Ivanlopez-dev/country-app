@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { rxResource } from '@angular/core/rxjs-interop';
 
 import { CountryService } from '../../services/country.service';
+import { NotFoundComponent } from '../../../shared/components/not-found/not-found.component';
+import { LoadingSpinnerComponent } from '../../../shared/components/loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-country-page',
-  imports: [],
+  imports: [NotFoundComponent, LoadingSpinnerComponent],
   templateUrl: './country-page.component.html',
 })
 export class CountryPageComponent {
