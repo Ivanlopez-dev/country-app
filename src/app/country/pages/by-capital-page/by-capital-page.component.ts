@@ -1,5 +1,5 @@
 import { Component, inject, linkedSignal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { of } from 'rxjs';
 
@@ -18,17 +18,22 @@ export class ByCapitalPageComponent {
   countryService = inject(CountryService);
 
   activatedRoute = inject(ActivatedRoute);
-  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
+  router = inject(Router);
 
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
   query = linkedSignal(() => this.queryParam);
 
   countryResource = rxResource({
     params: () => ({ query: this.query() }),
     stream: ({ params }) => {
 
-      console.log({ query: params.query });
-
       if (!params.query) return of([]);
+
+      this.router.navigate(['/country/by-capital'], {
+        queryParams: {
+          query: params.query,
+        }
+      })
 
       return this.countryService.searchByCapital(params.query)
     },

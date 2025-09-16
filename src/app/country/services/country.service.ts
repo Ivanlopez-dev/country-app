@@ -49,7 +49,7 @@ export class CountryService {
     return this.http.get<RESTCountry[]>(url).pipe(
       map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
       tap(countries => this.queryCacheCountry.set(query, countries)),
-      delay(1000),
+      delay(500),
       catchError((error) => {
         console.log('Error fetching ', error);
 
