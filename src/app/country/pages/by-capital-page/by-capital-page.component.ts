@@ -1,4 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, linkedSignal } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { of } from 'rxjs';
 
@@ -15,11 +16,17 @@ import { LoadingSpinnerComponent } from '../../../shared/components/loading-spin
 export class ByCapitalPageComponent {
 
   countryService = inject(CountryService);
-  query = signal('');
+
+  activatedRoute = inject(ActivatedRoute);
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
+
+  query = linkedSignal(() => this.queryParam);
 
   countryResource = rxResource({
     params: () => ({ query: this.query() }),
     stream: ({ params }) => {
+
+      console.log({ query: params.query });
 
       if (!params.query) return of([]);
 
