@@ -1,8 +1,16 @@
 <country-search-input placeholder="Buscar por capital" (value)="query.set($event)" />
 
+<!--  -->
+@if (countryResource.isLoading()) {
+<app-loading-spinner />
+}
+
+<!--  -->
+@if (countryResource.hasValue()) {
 <country-list
-  [countries]="countryResource.value() ?? []"
+  [countries]="countryResource.value()"
   [errorMessage]="countryResource.error()"
-  [isEmpty]="countryResource.value()?.length === 0"
+  [isEmpty]="countryResource.value().length === 0"
   [isLoading]="countryResource.isLoading()"
 />
+}
