@@ -5,10 +5,11 @@ import { rxResource } from '@angular/core/rxjs-interop';
 import { CountryService } from '../../services/country.service';
 import { NotFoundComponent } from '../../../shared/components/not-found/not-found.component';
 import { LoadingSpinnerComponent } from '../../../shared/components/loading-spinner/loading-spinner.component';
+import { CountryInformationComponent } from './country-information/country-information.component';
 
 @Component({
   selector: 'app-country-page',
-  imports: [NotFoundComponent, LoadingSpinnerComponent],
+  imports: [NotFoundComponent, LoadingSpinnerComponent, CountryInformationComponent],
   templateUrl: './country-page.component.html',
 })
 export class CountryPageComponent {
